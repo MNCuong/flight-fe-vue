@@ -1,0 +1,23 @@
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  .container {
+    margin-top: 50px;
+  }
+  
+  .list-group-item-action {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .list-group-item-action:hover {
+    background-color: #f8f9fa;
+    color: #0056b3;
+  }
+  
