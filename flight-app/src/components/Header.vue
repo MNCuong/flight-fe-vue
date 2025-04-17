@@ -12,6 +12,9 @@
         </button>
   
         <div class="collapse navbar-collapse" id="navbarNav">
+
+          <button class="dropdown-item text-danger" @click="logout">Đăng xuất</button>
+
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <router-link to="/" class="nav-link" exact-active-class="active">Trang chủ</router-link>

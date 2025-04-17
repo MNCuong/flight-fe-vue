@@ -1,34 +1,53 @@
 <template>
-  <div>
-    <div class="container">
-      <h1 class="text-center my-4">Chào mừng đến với BayNhanh!</h1>
-      
-      <div class="row">
-        <div class="col-md-4" v-for="feature in features" :key="feature.title">
-          <div class="card">
-            <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ feature.title }}</h5>
-              <p class="card-text">{{ feature.description }}</p>
-            </div>
+  <div class="container mt-5">
+    <div class="card shadow-sm p-4">
+      <h4 class="mb-3">Tìm chuyến bay</h4>
+      <form @submit.prevent="goToResults">
+        <div class="row g-3 align-items-end">
+          <div class="col-md-3">
+            <label class="form-label">Nơi đi</label>
+            <input v-model="search.departure" type="text" class="form-control" placeholder="VD: Hà Nội" />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Nơi đến</label>
+            <input v-model="search.destination" type="text" class="form-control" placeholder="VD: TP.HCM" />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Ngày đi</label>
+            <input v-model="search.date" type="date" class="form-control" />
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Tìm chuyến bay</button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 
-<script setup>
-const features = [
-  { title: "Đặt vé dễ dàng", description: "Tìm kiếm và đặt chuyến bay với chỉ vài bước đơn giản." },
-  { title: "Giới thiệu các hãng bay", description: "Chúng tôi cung cấp các chuyến bay từ các hãng lớn nhất." },
-  { title: "Khám phá các địa điểm", description: "Tìm hiểu về các địa điểm du lịch phổ biến." }
-]
+<script>
+export default {
+  data() {
+    return {
+      search: {
+        departure: '',
+        destination: '',
+        date: ''
+      }
+    };
+  },
+  methods: {
+    goToResults() {
+      // Chuyển trang và truyền thông tin tìm kiếm qua query
+      this.$router.push({
+        name: 'FlightResults',
+        query: {
+          departure: this.search.departure,
+          destination: this.search.destination,
+          date: this.search.date
+        }
+      });
+    }
+  }
+};
 </script>
-
-<style scoped>
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-</style>
